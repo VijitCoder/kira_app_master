@@ -1,11 +1,5 @@
 {
     "description": "Kira web engine. Master of the application",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/VijitCoder/Kira"
-        }
-    ],
     "require": {
         "php": ">=5.4",
         "vijitcoder/kira": "*"
