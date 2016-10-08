@@ -1,12 +1,12 @@
 <?php
 namespace install\app;
 
-use engine\utils\FS;
+use kira\utils\FS;
 
 /**
  * Модель формы "Создание нового приложения"
  */
-class MasterForm extends \engine\web\Form
+class MasterForm extends \kira\web\Form
 {
     /**
      * Имя таблицы логера по умолчанию. Не относится конкретно к модели формы, но требуется где-то хранить это значение.
@@ -56,7 +56,7 @@ class MasterForm extends \engine\web\Form
                 'required' => ['message' => 'Нужен адрес админа'],
 
                 'external' => [
-                    'function' => ['\engine\utils\Validators', 'mail'],
+                    'function' => ['\kira\utils\Validators', 'mail'],
                 ],
 
                 'length' => [
@@ -73,7 +73,7 @@ class MasterForm extends \engine\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\engine\utils\Validators', 'normalizeString'],
+                        'options' => ['\kira\utils\Validators', 'normalizeString'],
                     ],
 
                     'length' => [
@@ -87,7 +87,7 @@ class MasterForm extends \engine\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\engine\utils\Validators', 'normalizeString'],
+                        'options' => ['\kira\utils\Validators', 'normalizeString'],
                     ],
 
                     'length' => [
@@ -111,7 +111,7 @@ class MasterForm extends \engine\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\engine\utils\Validators', 'normalizeString'],
+                        'options' => ['\kira\utils\Validators', 'normalizeString'],
                     ],
 
                     'length' => [
@@ -125,7 +125,7 @@ class MasterForm extends \engine\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\engine\utils\Validators', 'normalizeString'],
+                        'options' => ['\kira\utils\Validators', 'normalizeString'],
                     ],
 
                     'length' => [
@@ -153,7 +153,7 @@ class MasterForm extends \engine\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\engine\utils\Validators', 'normalizeString'],
+                        'options' => ['\kira\utils\Validators', 'normalizeString'],
                     ],
 
                     'length' => [

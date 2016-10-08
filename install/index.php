@@ -25,6 +25,6 @@ error_reporting(DEBUG ? E_ALL : 0);
 require __DIR__ . '/../vendor/autoload.php';
 
 // для этого приложения - необязательно задавать часовой пояс. Но вообще это нужно.
-//date_default_timezone_set(engine\App::conf('timezone', false) ? : 'UTC');
+//date_default_timezone_set(kira\App::conf('timezone', false) ? : 'UTC');
 
-engine\App::router()->callAction();
+kira\App::router()->callAction();

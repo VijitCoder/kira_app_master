@@ -10,7 +10,7 @@ namespace install\app;
  *     'install/success'  => 'SingleController/success',
  *  ]
  */
-class SingleRouter implements \engine\IRouter
+class SingleRouter implements \kira\IRouter
 {
     /**
      * Парсинг URL и вызов action-метода в соответствующем контроллере.
@@ -25,7 +25,7 @@ class SingleRouter implements \engine\IRouter
 
         $url = explode('?', $_SERVER['REQUEST_URI'])[0];
         $url = trim($url, '/');
-        $routes = \engine\App::conf('router.routes');
+        $routes = \kira\App::conf('router.routes');
         $routes = array_flip($routes);
 
         if (!$route = array_search($url, $routes)) {

@@ -5,3 +5,4 @@
 
 /vendor
 rollback.csv
+composer.lock

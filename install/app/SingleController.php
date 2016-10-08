@@ -1,9 +1,9 @@
 <?php
 namespace install\app;
 
-use engine\net\Request;
-use engine\net\Session;
-use engine\web\Controller;
+use kira\net\Request;
+use kira\net\Session;
+use kira\web\Controller;
 
 /**
  * Единственный контроллер мастера приложения

@@ -10,10 +10,10 @@
 
 namespace install\app;
 
-use engine\utils\Arrays;
-use engine\utils\FS;
-use engine\net\Session;
-use engine\html\Render;
+use kira\utils\Arrays;
+use kira\utils\FS;
+use kira\net\Session;
+use kira\html\Render;
 
 class MasterService
 {
@@ -464,7 +464,7 @@ class MasterService
             unset($temp, $tempLen, $part);
 
             $d['log_path'] = $path;
-            $d['log_store'] = '\engine\Log::' . ($v['log']['store'] == 'db' ? 'STORE_IN_DB' : 'STORE_IN_FILES');
+            $d['log_store'] = '\kira\Log::' . ($v['log']['store'] == 'db' ? 'STORE_IN_DB' : 'STORE_IN_FILES');
             $d['log_table'] = $v['log']['table'] ?: MasterForm::LOG_TABLE;
             $d['log_tz'] = $v['log']['timezone'];
         }

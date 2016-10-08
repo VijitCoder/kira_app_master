@@ -6,7 +6,7 @@ use {{app_namespace}}\Env;
 /**
  * Контроллер приветствия.
  */
-class WelcomeController extends \engine\web\Controller
+class WelcomeController extends \kira\web\Controller
 {
     protected $title = 'Добро пожаловать';
 
