@@ -22,9 +22,9 @@ ini_set('display_errors', (int)DEBUG);
 ini_set('display_startup_errors', (int)DEBUG);
 error_reporting(DEBUG ? E_ALL : 0);
 
-require __DIR__ . '/../vendor/autoload.php';
+$composer = require ROOT_PATH . 'vendor/autoload.php';
 
 // для этого приложения - необязательно задавать часовой пояс. Но вообще это нужно.
 //date_default_timezone_set(kira\App::conf('timezone', false) ? : 'UTC');
 
-kira\App::router()->callAction();
+kira\App::router($composer)->callAction();
