@@ -23,9 +23,9 @@ ini_set('display_errors', (int)DEBUG);
 ini_set('display_startup_errors', (int)DEBUG);
 error_reporting(DEBUG ? E_ALL : 0);
 
-$composer = require ROOT_PATH . 'vendor/autoload.php';
+require ROOT_PATH . 'vendor/autoload.php';
 
 // для этого приложения - необязательно задавать часовой пояс. Но вообще это нужно.
 //date_default_timezone_set(App::conf('timezone', false) ? : 'UTC');
 
-App::router($composer)->callAction();
+App::router()->callAction();
