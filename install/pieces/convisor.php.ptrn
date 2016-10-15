@@ -1,9 +1,11 @@
+#!/usr/bin/php
 <?php
 /**
- * Главный скрипт приложения '{{app_namespace}}'
+ * Главный скрипт консольного запуска скриптов приложения "Convisor"
+ * Полный формат запуска:
+ *
+ *    php convisor.php <script> <param1> ... <paramN> -k <key>
  */
-use kira\core\App;
-
 // В случае мультибайтной кодировки сайта. Для кодировки типа 'windows-1251' это можно удалить.
 mb_internal_encoding('UTF-8');
 
@@ -26,15 +28,15 @@ define('TEMP_PATH', APP_PATH . 'temp/');
 // Путь к файлу основноЙ конфигурации приложения
 define('MAIN_CONFIG', APP_PATH . 'conf/main.php');
 
-define('DEBUG', true);
+require ROOT_PATH . 'vendor/autoload.php';
+
+define('DEBUG', app\Env::isLocal());
 
 ini_set('display_errors', (int)DEBUG);
 ini_set('display_startup_errors', (int)DEBUG);
 error_reporting(DEBUG ? E_ALL : 0);
 
-$composer = require ROOT_PATH . 'vendor/autoload.php';
-
 // Часовой пояс для PHP-функций времени. Можно задать через php.ini. Так или иначе часовой пояс должен быть определен.
-date_default_timezone_set(App::conf('timezone', false) ? : 'UTC');
+date_default_timezone_set(kira\core\App::conf('timezone', false) ? : 'UTC');
 
-App::router($composer)->callAction();
+new kira\core\Convisor($argv);

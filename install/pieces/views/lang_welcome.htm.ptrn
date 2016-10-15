@@ -5,7 +5,7 @@
  * string $domain имя домена сайта
  */
 
-use kira\App;
+use kira\core\App;
 
 $lang = (isset($_COOKIE['lang'])) ? $_COOKIE['lang'] : 'ru';
 ?>
@@ -56,6 +56,3 @@ $lang = (isset($_COOKIE['lang'])) ? $_COOKIE['lang'] : 'ru';
         location.reload();
     }
 </script>
-
-
-

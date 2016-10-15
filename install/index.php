@@ -2,6 +2,7 @@
 /**
  * Приложение по созданию нового приложения :)
  */
+use kira\core\App;
 
 mb_internal_encoding('UTF-8');
 
@@ -25,6 +26,6 @@ error_reporting(DEBUG ? E_ALL : 0);
 $composer = require ROOT_PATH . 'vendor/autoload.php';
 
 // для этого приложения - необязательно задавать часовой пояс. Но вообще это нужно.
-//date_default_timezone_set(kira\App::conf('timezone', false) ? : 'UTC');
+//date_default_timezone_set(App::conf('timezone', false) ? : 'UTC');
 
-kira\App::router($composer)->callAction();
+App::router($composer)->callAction();

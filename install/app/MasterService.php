@@ -288,6 +288,7 @@ class MasterService
             'temp'        => 'temp/',
             'conf'        => 'conf/',
             'controllers' => 'controllers/',
+            'console'     => 'console/',
         ];
 
         if ($multiLang) {
@@ -417,7 +418,7 @@ class MasterService
 
         $d = [
             'timezone'      => date_default_timezone_get(),
-            'app_namespace' => $v['app_namespace']
+            'app_namespace' => $v['app_namespace'],
         ];
 
         # main.php
@@ -509,8 +510,9 @@ class MasterService
         $file_prefix = preg_replace('~[^a-z]~i', '', $v['app_namespace']);
 
         $targets = [
-            'index.php.ptrn' => 'index.php',
-            '.htaccess'      => '.htaccess',
+            'index.php.ptrn'    => 'index.php',
+            'convisor.php.ptrn' => 'convisor.php',
+            '.htaccess'         => '.htaccess',
         ];
 
         foreach ($targets as $fileFrom => $fileTo) {
@@ -605,9 +607,10 @@ class MasterService
         $targets = [
             'controllers/WelcomeController.php.ptrn' => $v['path']['controllers'] . 'WelcomeController.php',
 
-            'Env.php.ptrn'       => $v['path']['app'] . 'Env.php',
-            '.htaccess_for_temp' => $v['path']['temp'] . '.htaccess',
-            'views/layout.htm'   => $v['path']['view'] . 'layout.htm',
+            'console/example.php' => $v['path']['console'] . 'example.php',
+            'Env.php.ptrn'        => $v['path']['app'] . 'Env.php',
+            '.htaccess_for_temp'  => $v['path']['temp'] . '.htaccess',
+            'views/layout.htm'    => $v['path']['view'] . 'layout.htm',
         ];
         $targets = array_merge($targets, $addTargets);
 
