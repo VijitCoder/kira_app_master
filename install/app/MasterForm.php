@@ -322,9 +322,9 @@ class MasterForm extends \kira\web\Form
     {
         $v = &$this->values;
 
-        if ($v['app_namespace'] === 'engine') {
+        if ($v['app_namespace'] === 'kira') {
             $this->errors['app_namespace'][] =
-                'Недопустимый корень пространства имен приложения. "<i>engine</i>" - это корень движка, вообще-то.';
+                'Недопустимый корень пространства имен приложения. "<i>kira</i>" - это корень движка, вообще-то.';
         }
 
         if ($v['lang']['switch'] && !$v['lang']['other']) {
