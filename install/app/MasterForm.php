@@ -2,6 +2,7 @@
 namespace install\app;
 
 use kira\utils\FS;
+use kira\utils\Validators;
 
 /**
  * Модель формы "Создание нового приложения"
@@ -23,7 +24,7 @@ class MasterForm extends \kira\web\Form
 
                 'filter_var' => [
                     'filter'  => FILTER_CALLBACK,
-                    'options' => ['\install\app\MasterForm', 'normalizePath'],
+                    'options' => [MasterForm::class, 'normalizePath'],
                     'message' => 'Каталог должен быть в пределах сайта',
                 ],
 
@@ -56,7 +57,7 @@ class MasterForm extends \kira\web\Form
                 'required' => ['message' => 'Нужен адрес админа'],
 
                 'external' => [
-                    'function' => ['\kira\utils\Validators', 'mail'],
+                    'function' => [Validators::class, 'mail'],
                 ],
 
                 'length' => [
@@ -73,7 +74,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\kira\utils\Validators', 'normalizeString'],
+                        'options' => [Validators::class, 'normalizeString'],
                     ],
 
                     'length' => [
@@ -87,7 +88,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\kira\utils\Validators', 'normalizeString'],
+                        'options' => [Validators::class, 'normalizeString'],
                     ],
 
                     'length' => [
@@ -111,7 +112,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\kira\utils\Validators', 'normalizeString'],
+                        'options' => [Validators::class, 'normalizeString'],
                     ],
 
                     'length' => [
@@ -125,7 +126,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\kira\utils\Validators', 'normalizeString'],
+                        'options' => [Validators::class, 'normalizeString'],
                     ],
 
                     'length' => [
@@ -153,7 +154,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\kira\utils\Validators', 'normalizeString'],
+                        'options' => [Validators::class, 'normalizeString'],
                     ],
 
                     'length' => [
@@ -168,7 +169,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\install\app\MasterForm', 'normalizePath'],
+                        'options' => [MasterForm::class, 'normalizePath'],
                         'message' => 'Каталог должен быть в пределах сайта',
                     ],
 
@@ -202,7 +203,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\install\app\MasterForm', 'langCodesValidator'],
+                        'options' => [MasterForm::class, 'langCodesValidator'],
                         'message' => 'Недопустимые символы в кодах языков. Ожидается [a-z\s,], каждый код 2-3 символа.',
                     ],
 
@@ -214,7 +215,7 @@ class MasterForm extends \kira\web\Form
                 'validators' => [
                     'filter_var' => [
                         'filter'  => FILTER_CALLBACK,
-                        'options' => ['\install\app\MasterForm', 'normalizePath'],
+                        'options' => [MasterForm::class, 'normalizePath'],
                         'message' => 'Каталог должен быть в пределах сайта',
                     ],
 
