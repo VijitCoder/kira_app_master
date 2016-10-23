@@ -12,6 +12,7 @@ namespace install\app;
 
 use kira\utils\Arrays;
 use kira\utils\FS;
+use kira\exceptions\FSException;
 use kira\net\Session;
 use kira\html\Render;
 
@@ -201,60 +202,67 @@ class MasterService
 
         foreach ($objects as $v) {
             list($type, $target) = $v;
-            switch ($type) {
-                case self::RBACK_PATH:
-                    $result = FS::removeDir($target, 1);
-                    $tgtInsert = 'каталога';
-                    break;
-                case self::RBACK_FILE:
-                    $result = FS::deleteFile($target);
-                    $tgtInsert = 'файла';
-                    break;
-                case self::RBACK_TABLE:
-                    $result = true;
-                    $tgtInsert = 'таблицы';
+            $warnMsg = '';
+            try {
+                switch ($type) {
+                    case self::RBACK_PATH:
+                        FS::removeDir($target, 1);
+                        $tgtInsert = 'каталога';
+                        break;
+                    case self::RBACK_FILE:
+                        FS::deleteFile($target);
+                        $tgtInsert = 'файла';
+                        break;
+                    case self::RBACK_TABLE:
+                        $tgtInsert = 'таблицы';
 
-                    $dbh = SingleModel::getConnection();
+                        $dbh = SingleModel::getConnection();
 
-                    if (is_null($dbh)) {
-                        if ($conf = Session::read('db')) {
-                            Session::delete('db');
-                            $conf = unserialize($conf);
-                            $dbh = SingleModel::dbConnect($conf);
+                        if (is_null($dbh)) {
+                            if ($conf = Session::read('db')) {
+                                Session::delete('db');
+                                $conf = unserialize($conf);
+                                $dbh = SingleModel::dbConnect($conf);
+                            } else {
+                                $this->addToBrief(self::BRIEF_WARN,
+                                    "Нет конфига подключения к БД. Удалите вручную таблицу `$target`");
+                                break;
+                            }
+                        }
+
+                        if ($dbh) {
+                            if (!SingleModel::dropLogTable($target)) {
+                                $warnMsg = SingleModel::getLastError();
+                            }
                         } else {
                             $this->addToBrief(self::BRIEF_WARN,
-                                "Нет конфига подключения к БД. Удалите вручную таблицу `$target`");
-                            break;
+                                'Ошибка соединения. ' . SingleModel::getLastError()
+                                . " Удалите вручную таблицу `$target`"
+                            );
                         }
-                    }
-
-                    if ($dbh) {
-                        if (!SingleModel::dropLogTable($target)) {
-                            $result = SingleModel::getLastError();
-                        }
-                    } else {
-                        $this->addToBrief(self::BRIEF_WARN,
-                            'Ошибка соединения. ' . SingleModel::getLastError() . " Удалите вручную таблицу `$target`");
-                    }
-                    break;
-                default:
-                    $tgtInsert = $type;
-                    $result = 'Неизвестный тип объекта удаления.';
+                        break;
+                    default:
+                        $tgtInsert = $type;
+                        $warnMsg = 'Неизвестный тип объекта удаления.';
+                }
+            } catch (FSException $e) {
+                $warnMsg = $e->getMessage();
             }
 
-            if ($result === true) {
-                $this->addToBrief(self::BRIEF_INFO, "Удаление {$tgtInsert}: $target");
+            if ($warnMsg) {
+                $this->addToBrief(self::BRIEF_WARN, "Ошибка удаления {$tgtInsert}: $target. $warnMsg");
             } else {
-                $this->addToBrief(self::BRIEF_WARN, "Ошибка удаления {$tgtInsert}: $target. $result");
+                $this->addToBrief(self::BRIEF_INFO, "Удаление {$tgtInsert}: $target");
             }
         }
 
         fclose($fh);
 
-        if (true === ($result = FS::deleteFile($file))) {
+        try {
+            FS::deleteFile($file);
             $this->addToBrief(self::BRIEF_INFO, 'Удаление файла отката');
-        } else {
-            $this->addToBrief(self::BRIEF_ERROR, "Ошибка удаления файла отката. $result");
+        } catch (FSException $e) {
+            $this->addToBrief(self::BRIEF_ERROR, 'Ошибка удаления файла отката. ' . $e->getMessage());
         }
 
         $this->addToBrief(self::BRIEF_INFO, 'Откат закончен.');
@@ -266,7 +274,12 @@ class MasterService
      */
     public static function eliminateRollback()
     {
-        return FS::deleteFile(ROOT_PATH . self::RBACK_FILE_NAME);
+        try {
+            FS::deleteFile(ROOT_PATH . self::RBACK_FILE_NAME);
+            return true;
+        } catch (FSException $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -377,13 +390,15 @@ class MasterService
      */
     private function createPath($path)
     {
-        if (true === ($result = FS::makeDir($path))) {
+        try {
+            FS::makeDir($path);
             fputcsv($this->rollbackHandler, [self::RBACK_PATH, $path]);
-        } else {
-            $this->addToBrief(self::BRIEF_ERROR, "Ошибка создания каталога '{$path}': {$result}");
+            return true;
+        } catch (FSException $e) {
+            $msg = $e->getMessage();
+            $this->addToBrief(self::BRIEF_ERROR, "Ошибка создания каталога '{$path}': {$msg}");
+            return false;
         }
-
-        return $result === true;
     }
 
     /**
