@@ -66,6 +66,16 @@ class SingleRouter implements IRouter
     }
 
     /**
+     * Заглушка.В этом приложении нет такой необходимости. Поэтому нет реализации.
+     * Собираем из массива GET-строку запроса, которая пишется в URL после знака вопроса
+     * @param array $params
+     * @return string
+     */
+    public function makeQueryString(array $params)
+    {
+    }
+
+    /**
      * Заглушка
      * Названия контроллера, к которому обратился роутер после парсинга запроса
      * @return string
