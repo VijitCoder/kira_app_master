@@ -2,7 +2,7 @@
 namespace install\app;
 
 use kira\core\App;
-use kira\interfaces\IRouter;
+use kira\net\AbstractRouter;
 
 /**
  * Роутер мастера приложения.
@@ -13,7 +13,7 @@ use kira\interfaces\IRouter;
  *     'install/success'  => 'SingleController/success',
  *  ]
  */
-class SingleRouter implements IRouter
+class SingleRouter extends AbstractRouter
 {
     /**
      * Парсинг URL и вызов action-метода в соответствующем контроллере.
@@ -63,6 +63,7 @@ class SingleRouter implements IRouter
      */
     public function url($route, array $params = [])
     {
+        return '';
     }
 
     /**
@@ -73,6 +74,7 @@ class SingleRouter implements IRouter
      */
     public function makeQueryString(array $params)
     {
+        return '';
     }
 
     /**
