@@ -80,7 +80,7 @@ class MasterService
     public function __construct()
     {
         $this->form = new MasterForm();
-        $this->piecesPath = ROOT_PATH . 'install/pieces/';
+        $this->piecesPath = KIRA_ROOT_PATH . 'install/pieces/';
     }
 
     /**
@@ -109,7 +109,7 @@ class MasterService
 
         $values = $form->getValues();
 
-        $rollbackFile = ROOT_PATH . self::RBACK_FILE_NAME;
+        $rollbackFile = KIRA_ROOT_PATH . self::RBACK_FILE_NAME;
         if (!$this->rollbackHandler = fopen($rollbackFile, 'w')) {
             $this->addToBrief(self::BRIEF_ERROR, "Не могу создать файл отката <b>{$rollbackFile}</b>.<br>"
                 . 'Проверьте доступ в каталог, права на запись этого файла. Установка прервана.');
@@ -180,7 +180,7 @@ class MasterService
      */
     public function rollback()
     {
-        $file = ROOT_PATH . self::RBACK_FILE_NAME;
+        $file = KIRA_ROOT_PATH . self::RBACK_FILE_NAME;
 
         if (!file_exists($file)) {
             $this->addToBrief(self::BRIEF_ERROR, 'Не найден файл отката.');
@@ -275,7 +275,7 @@ class MasterService
     public static function eliminateRollback()
     {
         try {
-            FS::deleteFile(ROOT_PATH . self::RBACK_FILE_NAME);
+            FS::deleteFile(KIRA_ROOT_PATH . self::RBACK_FILE_NAME);
             return true;
         } catch (FSException $e) {
             return $e->getMessage();
@@ -309,7 +309,7 @@ class MasterService
         }
 
         foreach ($v['path'] as $key => &$path) {
-            $path = ROOT_PATH . $v['app_path'] . $path;
+            $path = KIRA_ROOT_PATH . $v['app_path'] . $path;
             if (!$this->createPath($path)) {
                 $ok = false;
             }
@@ -317,7 +317,7 @@ class MasterService
 
         if ($multiLang) {
             $path = &$v['lang']['js_path'];
-            $path = ROOT_PATH . $path . 'i18n/';
+            $path = KIRA_ROOT_PATH . $path . 'i18n/';
             if (!$this->createPath($path)) {
                 $ok = false;
             }
@@ -352,7 +352,7 @@ class MasterService
 
         $path = &$log['path'];
         if ($path) {
-            $path = ROOT_PATH . $path;
+            $path = KIRA_ROOT_PATH . $path;
             if (($path !== $values['path']['temp']) && !$this->createPath($path)) {
                 return false;
             }
@@ -466,10 +466,10 @@ class MasterService
 
                 if ($part === $temp) {
                     if (mb_strlen($part) == mb_strlen($path)) {
-                        $path = 'TEMP_PATH,';
+                        $path = 'KIRA_TEMP_PATH,';
                     } else {
                         $path = substr($path, $tempLen);
-                        $path = "TEMP_PATH . '$path',";
+                        $path = "KIRA_TEMP_PATH . '$path',";
                     }
                 } else {
                     $path = "'$path',";
@@ -531,11 +531,11 @@ class MasterService
         ];
 
         foreach ($targets as $fileFrom => $fileTo) {
-            $fn = ROOT_PATH . $fileTo;
+            $fn = KIRA_ROOT_PATH . $fileTo;
             if (file_exists($fn)) {
                 $fnNew = $file_prefix . '_' . $fileTo;
                 $this->addToBrief(self::BRIEF_WARN, "Файл $fn уже существует. Создаю <i>$fnNew</i>.");
-                $fn = ROOT_PATH . $fnNew;
+                $fn = KIRA_ROOT_PATH . $fnNew;
                 if (file_exists($fn)) {
                     $this->addToBrief(self::BRIEF_ERROR, "Файл $fn тоже существует! Не знаю, что делать.");
                     return false;
@@ -599,7 +599,7 @@ class MasterService
             $addTargets['i18n/dummy.js'] = $v['lang']['js_path'] . "{$lang}.js";
         }
 
-        $url = mb_substr($v['lang']['js_path'], mb_strlen(ROOT_PATH) - 1); // -1, чтоб с ведущим слешем
+        $url = mb_substr($v['lang']['js_path'], mb_strlen(KIRA_ROOT_PATH) - 1); // -1, чтоб с ведущим слешем
         $addData = [
             'js_url' => $url,
         ];

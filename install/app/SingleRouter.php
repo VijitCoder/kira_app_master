@@ -36,7 +36,7 @@ class SingleRouter extends AbstractRouter
         }
 
         $route = explode('/', $route);
-        $controller = APP_NAMESPACE . 'app\\' . $route[0];
+        $controller = KIRA_APP_NAMESPACE . 'app\\' . $route[0];
         $action = $route[1];
 
         (new $controller)->$action();

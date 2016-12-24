@@ -357,18 +357,18 @@ class MasterForm extends \kira\web\Form
         $v = &$this->values;
         $e = &$this->errors;
 
-        if (file_exists(ROOT_PATH . $v['app_path'])) {
+        if (file_exists(KIRA_ROOT_PATH . $v['app_path'])) {
             $e['app_path'][] = "Каталог приложения уже существует. "
                 . 'Не могу с ним работать без риска переписать что-нибудь.';
         }
 
-        $path = ROOT_PATH . $v['log']['path'];
+        $path = KIRA_ROOT_PATH . $v['log']['path'];
         if ($v['log']['switch'] && file_exists($path) && !is_writable($path)) {
             $e['log'][] = 'Каталог для логов не доступен для записи';
         }
 
         if ($v['lang']['switch']) {
-            $path = ROOT_PATH . $v['lang']['js_path'];
+            $path = KIRA_ROOT_PATH . $v['lang']['js_path'];
             if (file_exists($path . 'i18n/')) {
                 $e['lang'][] = 'Каталог для файлов словарей уже существует. '
                     . 'Нельзя в нем создать словари без риска переписать что-нибудь.';

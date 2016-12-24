@@ -8,31 +8,31 @@ use kira\core\App;
 mb_internal_encoding('UTF-8');
 
 // Корень пространства имен приложения. Все классы приложения, должны быть в его подпространстве.
-define('APP_NAMESPACE', '{{app_namespace}}');
+define('KIRA_APP_NAMESPACE', '{{app_namespace}}');
 
 // Физический путь от корня тома. Гарантированный завершающий слеш. Кроссплатформа. Приводим пути к unix-стилю.
-define('ROOT_PATH', str_replace('\\', '/', rtrim(__DIR__, '/')) . '/');
+define('KIRA_ROOT_PATH', str_replace('\\', '/', rtrim(__DIR__, '/')) . '/');
 
 // Каталог приложения.
-define('APP_PATH', ROOT_PATH . '{{app_path}}');
+define('KIRA_APP_PATH', KIRA_ROOT_PATH . '{{app_path}}');
 
 // Каталог шаблонов приложения.
-define('VIEWS_PATH', APP_PATH . 'views/');
+define('KIRA_VIEWS_PATH', KIRA_APP_PATH . 'views/');
 
 // Временный каталог приложения. В него, как минимум, складываются логи. Обязательно создать этот каталог и дать доступ
 // на запись для процесса веб-сервера.
-define('TEMP_PATH', APP_PATH . 'temp/');
+define('KIRA_TEMP_PATH', KIRA_APP_PATH . 'temp/');
 
 // Путь к файлу основноЙ конфигурации приложения
-define('MAIN_CONFIG', APP_PATH . 'conf/main.php');
+define('KIRA_MAIN_CONFIG', KIRA_APP_PATH . 'conf/main.php');
 
-define('DEBUG', true);
+define('KIRA_DEBUG', true);
 
-ini_set('display_errors', (int)DEBUG);
-ini_set('display_startup_errors', (int)DEBUG);
-error_reporting(DEBUG ? E_ALL : 0);
+ini_set('display_errors', (int)KIRA_DEBUG);
+ini_set('display_startup_errors', (int)KIRA_DEBUG);
+error_reporting(KIRA_DEBUG ? E_ALL : 0);
 
-$composer = require ROOT_PATH . 'vendor/autoload.php';
+$composer = require KIRA_ROOT_PATH . 'vendor/autoload.php';
 App::setComposer($composer);
 unset($composer);
 
