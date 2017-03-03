@@ -36,7 +36,7 @@ $composer = require KIRA_ROOT_PATH . 'vendor/autoload.php';
 App::setComposer($composer);
 unset($composer);
 
-define('KIRA_DEBUG', Env::isLocal());
+define('KIRA_DEBUG', !Env::isProduction());
 
 ini_set('display_errors', (int)KIRA_DEBUG);
 ini_set('display_startup_errors', (int)KIRA_DEBUG);

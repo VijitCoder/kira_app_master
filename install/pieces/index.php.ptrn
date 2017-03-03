@@ -3,6 +3,7 @@
  * Главный скрипт приложения '{{app_namespace}}'
  */
 use kira\core\App;
+use {{app_namespace}}\Env;
 
 // В случае мультибайтной кодировки сайта. Для кодировки типа 'windows-1251' это можно удалить.
 mb_internal_encoding('UTF-8');
@@ -26,15 +27,15 @@ define('KIRA_TEMP_PATH', KIRA_APP_PATH . 'temp/');
 // Путь к файлу основноЙ конфигурации приложения
 define('KIRA_MAIN_CONFIG', KIRA_APP_PATH . 'conf/main.php');
 
-define('KIRA_DEBUG', true);
+$composer = require KIRA_ROOT_PATH . 'vendor/autoload.php';
+App::setComposer($composer);
+unset($composer);
+
+define('KIRA_DEBUG', !Env::isProduction());
 
 ini_set('display_errors', (int)KIRA_DEBUG);
 ini_set('display_startup_errors', (int)KIRA_DEBUG);
 error_reporting(KIRA_DEBUG ? E_ALL : 0);
-
-$composer = require KIRA_ROOT_PATH . 'vendor/autoload.php';
-App::setComposer($composer);
-unset($composer);
 
 // Часовой пояс для PHP-функций времени. Можно задать через php.ini. Так или иначе часовой пояс должен быть определен.
 date_default_timezone_set(App::conf('timezone', false) ? : 'UTC');
