@@ -1,0 +1,77 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "10ae2eae91af4bc0d483a05f255a9728",
+    "content-hash": "f75f44fb106d4b2a5f95989e8e08c3c2",
+    "packages": [
+        {
+            "name": "vijitcoder/kira",
+            "version": "dev-development",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/VijitCoder/Kira.git",
+                "reference": "ea4208abb2903f5eb9de4fc6925da2424e1dfd3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/VijitCoder/Kira/zipball/ea4208abb2903f5eb9de4fc6925da2424e1dfd3b",
+                "reference": "ea4208abb2903f5eb9de4fc6925da2424e1dfd3b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^5.6",
+                "sami/sami": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kira\\": "src/"
+                },
+                "classmap": [
+                    "tests/traits/CallAsPublic.php",
+                    "tests/traits/VfsGlob.php"
+                ],
+                "files": [
+                    "src/bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vijit",
+                    "email": "vijit@mail.ru",
+                    "homepage": "https://waredom.ru",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Kira. Simple web-engine",
+            "keywords": [
+                "kira",
+                "web engine"
+            ],
+            "time": "2017-09-22 18:53:20"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "vijitcoder/kira": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4"
+    },
+    "platform-dev": []
+}
