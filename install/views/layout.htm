@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+use kira\core\App;
+?>
 <html>
 
 <head>
@@ -9,14 +12,16 @@
 </head>
 
 <body>
-	<div id='base'>
-		<?= $CONTENT ?>
+    <div id='base'>
+        <?= $CONTENT ?>
         <div id="fempty"></div>
     </div>
 
     <div id='footer'>
-        <div class="float-right"><?= kira\core\App::VERSION ?> &copy; 7Lives</div>
-	</div>
+        <div class="float-right">
+            <a class ='plain-text' href="<?= App::ENGINE_URL ?>"><?= App::ENGINE_NAME ?> <?= App::VERSION ?></a> &copy; 7Lives
+        </div>
+    </div>
 </body>
 </html>
 
