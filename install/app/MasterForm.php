@@ -2,12 +2,12 @@
 namespace install\app;
 
 use kira\utils\FS;
-use kira\utils\Validators;
+use kira\validation\Form;
 
 /**
  * Модель формы "Создание нового приложения"
  */
-class MasterForm extends \kira\web\Form
+class MasterForm extends Form
 {
     /**
      * Имя таблицы логера по умолчанию. Не относится конкретно к модели формы, но требуется где-то хранить это значение.
@@ -28,7 +28,7 @@ class MasterForm extends \kira\web\Form
                     'message' => 'Каталог должен быть в пределах сайта',
                 ],
 
-                'length' => [
+                'limits' => [
                     'max'     => 1000,
                     'message' => 'Каталог приложения: очень длинный путь. Максимум 1000 символов',
                 ],
@@ -45,7 +45,7 @@ class MasterForm extends \kira\web\Form
                     'message' => 'Недопустимые символы в корне пространства имен. Ожидается [a-z\_-]',
                 ],
 
-                'length' => [
+                'limits' => [
                     'max'     => 100,
                     'message' => 'Очень длинный корень пространства имен. Максимум 100 символов',
                 ],
@@ -56,11 +56,9 @@ class MasterForm extends \kira\web\Form
             'validators' => [
                 'required' => ['message' => 'Нужен адрес админа'],
 
-                'external' => [
-                    'function' => [Validators::class, 'mail'],
-                ],
+                'email' => true,
 
-                'length' => [
+                'limits' => [
                     'max'     => 50,
                     'message' => 'Очень длинный email. Максимум 50 символов',
                 ],
@@ -72,12 +70,9 @@ class MasterForm extends \kira\web\Form
 
             'server' => [
                 'validators' => [
-                    'filter_var' => [
-                        'filter'  => FILTER_CALLBACK,
-                        'options' => [Validators::class, 'normalizeString'],
-                    ],
+                    'normalize_string' => true,
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 100,
                         'message' => 'Сервер[порт]. Максимум 100 символов',
                     ],
@@ -86,12 +81,9 @@ class MasterForm extends \kira\web\Form
 
             'base' => [
                 'validators' => [
-                    'filter_var' => [
-                        'filter'  => FILTER_CALLBACK,
-                        'options' => [Validators::class, 'normalizeString'],
-                    ],
+                    'normalize_string' => true,
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 50,
                         'message' => 'Имя базы. Максимум 50 символов',
                     ],
@@ -110,12 +102,9 @@ class MasterForm extends \kira\web\Form
 
             'user' => [
                 'validators' => [
-                    'filter_var' => [
-                        'filter'  => FILTER_CALLBACK,
-                        'options' => [Validators::class, 'normalizeString'],
-                    ],
+                    'normalize_string' => true,
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 30,
                         'message' => 'Имя пользователя. Максимум 30 символов',
                     ],
@@ -124,12 +113,9 @@ class MasterForm extends \kira\web\Form
 
             'password' => [
                 'validators' => [
-                    'filter_var' => [
-                        'filter'  => FILTER_CALLBACK,
-                        'options' => [Validators::class, 'normalizeString'],
-                    ],
+                    'normalize_string' => true,
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 30,
                         'message' => 'Пароль. Максимум 30 символов',
                     ],
@@ -152,12 +138,9 @@ class MasterForm extends \kira\web\Form
 
             'table' => [
                 'validators' => [
-                    'filter_var' => [
-                        'filter'  => FILTER_CALLBACK,
-                        'options' => [Validators::class, 'normalizeString'],
-                    ],
+                    'normalize_string' => true,
 
-                    'length' => [
+                    'limits' => [
                         'min'     => 1,  //проверка нужна. Предыдущий валидатор может укоротить строку
                         'max'     => 50,
                         'message' => 'Имя таблицы должно быть в пределах [1, 50] символов',
@@ -173,7 +156,7 @@ class MasterForm extends \kira\web\Form
                         'message' => 'Каталог должен быть в пределах сайта',
                     ],
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 1000,
                         'message' => 'Очень длинный путь каталога. Максимум 1000 символов',
                     ],
@@ -188,7 +171,7 @@ class MasterForm extends \kira\web\Form
                         'message' => 'Недопустимые символы в часовом поясе. Ожидается [0-9a-z_+-/]',
                     ],
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 50,
                         'message' => 'Часовой пояс максимум 50 символов',
                     ],
@@ -207,7 +190,7 @@ class MasterForm extends \kira\web\Form
                         'message' => 'Недопустимые символы в кодах языков. Ожидается [a-z\s,], каждый код 2-3 символа.',
                     ],
 
-                    'length' => ['max' => 100, 'message' => 'Слишком длинная строка кодов. Максимум 100 символов'],
+                    'limits' => ['max' => 100, 'message' => 'Слишком длинная строка кодов. Максимум 100 символов'],
                 ],
             ],
 
@@ -219,7 +202,7 @@ class MasterForm extends \kira\web\Form
                         'message' => 'Каталог должен быть в пределах сайта',
                     ],
 
-                    'length' => [
+                    'limits' => [
                         'max'     => 1000,
                         'message' => 'Очень длинный путь каталога. Максимум 1000 символов',
                     ],
@@ -238,7 +221,7 @@ class MasterForm extends \kira\web\Form
      *
      * @return bool
      */
-    public function validate()
+    public function validate(): bool
     {
         foreach (['db', 'log', 'lang'] as $key) {
             if (!isset($this->rawData[$key]['switch'])) {
