@@ -40,7 +40,7 @@ define('KIRA_DEBUG', !Env::isProduction());
 
 ini_set('display_errors', (int)KIRA_DEBUG);
 ini_set('display_startup_errors', (int)KIRA_DEBUG);
-error_reporting(KIRA_DEBUG ? E_ALL : 0);
+error_reporting(KIRA_DEBUG ? -1 : 0);
 
 // Часовой пояс для PHP-функций времени. Можно задать через php.ini. Так или иначе часовой пояс должен быть определен.
 date_default_timezone_set(App::conf('timezone', false) ? : 'UTC');

@@ -26,7 +26,7 @@ define('KIRA_DEBUG', !Env::isProduction());
 
 ini_set('display_errors', (int)KIRA_DEBUG);
 ini_set('display_startup_errors', (int)KIRA_DEBUG);
-error_reporting(KIRA_DEBUG ? E_ALL : 0);
+error_reporting(KIRA_DEBUG ? -1 : 0);
 
 // для этого приложения - необязательно задавать часовой пояс. Но вообще это нужно.
 //date_default_timezone_set(App::conf('timezone', false) ? : 'UTC');
