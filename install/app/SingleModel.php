@@ -97,7 +97,7 @@ class SingleModel
         $result = self::$dbh->exec("
             CREATE TABLE `$table` (
                 `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
-                `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата/время события',
+                `created_at` DATETIME NOT NULL COMMENT 'Дата/время события',
                 `timezone` char(10) NOT NULL COMMENT 'Часовой пояс, которому соответствует указанное время события',
                 `log_type` varchar(20) NOT NULL COMMENT 'Тип сообщения',
                 `message` text NOT NULL COMMENT 'Сообщение',
