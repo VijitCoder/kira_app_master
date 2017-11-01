@@ -482,7 +482,6 @@ class MasterService
             $d['log_path'] = $path;
             $d['log_store'] = '\kira\Log::' . ($v['log']['store'] == 'db' ? 'STORE_IN_DB' : 'STORE_IN_FILES');
             $d['log_table'] = $v['log']['table'] ?: MasterForm::LOG_TABLE;
-            $d['log_tz'] = $v['log']['timezone'];
         }
 
         $d['email'] = $v['email'];

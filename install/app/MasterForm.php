@@ -162,21 +162,6 @@ class MasterForm extends Form
                     ],
                 ],
             ],
-
-            'timezone' => [
-                'validators' => [
-                    'filter_var' => [
-                        'filter'  => FILTER_VALIDATE_REGEXP,
-                        'options' => ['regexp' => '~^[0-9a-z_+-/]*$~i'],
-                        'message' => 'Недопустимые символы в часовом поясе. Ожидается [0-9a-z_+-/]',
-                    ],
-
-                    'limits' => [
-                        'max'     => 50,
-                        'message' => 'Часовой пояс максимум 50 символов',
-                    ],
-                ],
-            ],
         ],
 
         'lang' => [
