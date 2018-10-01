@@ -100,7 +100,7 @@ class MasterService
         if (!($form->isValid() && $form->logicChecks())) {
             $this->errorBlocks = $this->recombineValidationErrors($form->getErrors());
 
-            $values = Arrays::array_filter_recursive($form->getValues());
+            $values = Arrays::filterRecursive($form->getValues());
             $raw = $form->getRawData();
             $values = Arrays::merge_recursive($raw, $values);
 
@@ -653,7 +653,7 @@ class MasterService
      */
     private function recombineValidationErrors($errors)
     {
-        $errors = Arrays::array_filter_recursive($errors);
+        $errors = Arrays::filterRecursive($errors);
         $result = $this->errorBlocks;
 
         foreach (['app_path', 'app_namespace', 'email',] as $key) {

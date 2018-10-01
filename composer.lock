@@ -1,10 +1,9 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "10ae2eae91af4bc0d483a05f255a9728",
     "content-hash": "f75f44fb106d4b2a5f95989e8e08c3c2",
     "packages": [
         {
@@ -56,7 +55,7 @@
                 "user agent",
                 "useragent"
             ],
-            "time": "2017-03-01 22:19:13"
+            "time": "2017-03-01T22:19:13+00:00"
         },
         {
             "name": "vijitcoder/kira",
@@ -64,12 +63,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/VijitCoder/Kira.git",
-                "reference": "a0172dc991b0a3e5664e0f01e6d3e2dc04d6e454"
+                "reference": "bbc3301baabd2594f5629df39d4cbf321939c6e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VijitCoder/Kira/zipball/a0172dc991b0a3e5664e0f01e6d3e2dc04d6e454",
-                "reference": "a0172dc991b0a3e5664e0f01e6d3e2dc04d6e454",
+                "url": "https://api.github.com/repos/VijitCoder/Kira/zipball/bbc3301baabd2594f5629df39d4cbf321939c6e7",
+                "reference": "bbc3301baabd2594f5629df39d4cbf321939c6e7",
                 "shasum": ""
             },
             "require": {
@@ -111,7 +110,7 @@
                 "kira",
                 "web engine"
             ],
-            "time": "2017-11-01 14:28:53"
+            "time": "2018-09-27T19:13:57+00:00"
         }
     ],
     "packages-dev": [],

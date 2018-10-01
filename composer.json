@@ -1,7 +1,7 @@
 {
     "description": "Kira web engine. Master of the application",
     "require": {
-        "php": ">=5.4",
+        "php": ">=7.1",
         "vijitcoder/kira": "dev-development"
     },
     "autoload": {
