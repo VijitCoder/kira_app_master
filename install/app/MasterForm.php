@@ -387,7 +387,7 @@ class MasterForm extends Form
      * учесть, что перед этим была проверка подключения к БД в другом методе, и если она не удалась, тогда проверка
      * таблицы не может быть выполнена.
      *
-     * Проверяем часовой пояс, если он задан. Путь к логам, если он задан, проверяется в другом методе.
+     * Путь к логам, если он задан, проверяется в другом методе.
      *
      * @return void
      */
@@ -397,14 +397,6 @@ class MasterForm extends Form
 
         if (!$conf['switch']) {
             return;
-        }
-
-        if ($conf['timezone']) {
-            try {
-                new \DateTime($conf['timezone']);
-            } catch (\Exception $e) {
-                $this->errors['log'][] = 'Неверный часовой пояс: ' . $e->getMessage();
-            }
         }
 
         if (!$conf['store']) {

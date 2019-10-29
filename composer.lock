@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f75f44fb106d4b2a5f95989e8e08c3c2",
+    "content-hash": "ead09cf11ad6b9f1c146477600d71d70",
     "packages": [
         {
             "name": "donatj/phpuseragentparser",
@@ -63,12 +63,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/VijitCoder/Kira.git",
-                "reference": "bbc3301baabd2594f5629df39d4cbf321939c6e7"
+                "reference": "328eae6420bfff2b03f815d273c8c6e5af607dc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VijitCoder/Kira/zipball/bbc3301baabd2594f5629df39d4cbf321939c6e7",
-                "reference": "bbc3301baabd2594f5629df39d4cbf321939c6e7",
+                "url": "https://api.github.com/repos/VijitCoder/Kira/zipball/328eae6420bfff2b03f815d273c8c6e5af607dc1",
+                "reference": "328eae6420bfff2b03f815d273c8c6e5af607dc1",
                 "shasum": ""
             },
             "require": {
@@ -110,7 +110,7 @@
                 "kira",
                 "web engine"
             ],
-            "time": "2018-09-27T19:13:57+00:00"
+            "time": "2018-10-23T17:58:16+00:00"
         }
     ],
     "packages-dev": [],
@@ -122,7 +122,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }
