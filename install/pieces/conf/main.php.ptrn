@@ -25,4 +25,4 @@ $main = [
 
 $env = require 'env.php';
 
-return kira\utils\Arrays::merge_recursive($main, $env, true);
+return kira\utils\Arrays::mergeRecursive($main, $env, true);
