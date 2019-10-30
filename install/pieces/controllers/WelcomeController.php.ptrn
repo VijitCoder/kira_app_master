@@ -2,11 +2,12 @@
 namespace {{app_namespace}}\controllers;
 
 use {{app_namespace}}\Env;
+use kira\web\Controller;
 
 /**
  * Контроллер приветствия.
  */
-class WelcomeController extends \kira\web\Controller
+class WelcomeController extends Controller
 {
     protected $title = 'Добро пожаловать';
 

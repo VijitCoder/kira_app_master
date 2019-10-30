@@ -2,9 +2,12 @@
 /**
  * Подключение скрипта конфига можно сделать более корректно, но будет сложнее. Сейчас подключается напрямую в App.php.
  */
+use {{app_namespace}}\controllers\WelcomeController;
+use kira\utils\Arrays;
+
 $main = [
     // FQN контроллера + метод для главной страницы сайта
-    'indexHandler' => '{{app_namespace}}\controllers\WelcomeController',
+    'indexHandler' => WelcomeController::class,
 
     'router' => [
         //'class' => '', // Для назначения своего роутера
@@ -12,7 +15,7 @@ $main = [
         // Настройки для роутера движка. Для иной реализации роутера они могут отличаться.
 
         // FQN контроллера + метод, отвечающий при 404 от роутера.
-        //'404_handler' => '{{app_namespace}}\controllers\ErrorController',
+        //'404_handler' => \{{app_namespace}}\controllers\ErrorController::class,
 
         // логировать редиректы роутера
         'log_redirects' => false,
@@ -25,4 +28,4 @@ $main = [
 
 $env = require 'env.php';
 
-return kira\utils\Arrays::mergeRecursive($main, $env, true);
+return Arrays::mergeRecursive($main, $env, true);
