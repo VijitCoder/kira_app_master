@@ -18,12 +18,12 @@ $lang = (isset($_COOKIE['lang'])) ? $_COOKIE['lang'] : 'ru';
     <option value="en" <?if ($lang=='en') echo 'selected';?>>english</option>
 </select>
 
-<h4><?=App::t('Добро пожаловать на сайт DOMAIN', ['DOMAIN' => $domain]);?></h4>
+<h4><?= App::t('Добро пожаловать на сайт DOMAIN', ['DOMAIN' => $domain]) ?></h4>
 
-<p><?=App::t('Это пример только что созданного приложения. Теперь дело за вами..');?></p>
+<p><?= App::t('Это пример только что созданного приложения. Теперь дело за вами..') ?></p>
 
-<p><?=App::t('Пример js-перевода');?>:
-<a href='javascript:void(0)' onclick='alert("Не учили не щекать куда-попало?".t() + ";)")'><?=App::t('Нажми меня');?></a></p>
+<p><?= App::t('Пример js-перевода') ?>:
+<a href='javascript:void(0)' onclick='alert("Не учили не щекать куда-попало?".t() + ";)")'><?= App::t('Нажми меня') ?></a></p>
 
 <hr>
 
